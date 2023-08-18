@@ -1,6 +1,7 @@
 import '../styles/style.css'
 import FormRow from '../components/FormRow'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const initialState = {
   firstName: '',
@@ -13,6 +14,7 @@ const initialState = {
 }
 
 const Register = () => {
+  const navigate = useNavigate()
   const [values, setValues] = useState(initialState)
 
   const toggleMember = () => {
@@ -26,6 +28,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(values)
+    navigate('/dashboard')
   }
 
   return (

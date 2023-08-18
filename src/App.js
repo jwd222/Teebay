@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Register } from './pages'
+import { Register, Products } from './pages'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {
@@ -7,6 +7,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Register />} />
+        <Route path="/dashboard" element={<Products />} />
       </Routes>
     </BrowserRouter>
   )
