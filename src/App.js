@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Register />} />
         <Route path="/dashboard" element={<Products />} />
+        <Route path="/edit-product" element={<Products />} />
       </Routes>
     </BrowserRouter>
   )
