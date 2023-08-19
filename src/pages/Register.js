@@ -39,13 +39,7 @@ const Register = () => {
       <div className="form_container p-5 rounded bg-white border border-black">
         <form onSubmit={handleSubmit}>
           <h3>{values.isMember ? 'SIGN IN' : 'SIGN UP'}</h3>
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
+          <div className="d-flex justify-content-between">
             {/* firstname */}
             {!values.isMember && (
               <FormField
@@ -77,24 +71,26 @@ const Register = () => {
               handleChange={handleChange}
             />
           )}
-          {/* phone no */}
-          {!values.isMember && (
+          <div className="d-flex justify-content-between">
+            {/* phone no */}
+            {!values.isMember && (
+              <FormField
+                type={'tel'}
+                name={'phone'}
+                value={values.phone}
+                placeholderText={'Phone Number'}
+                handleChange={handleChange}
+              />
+            )}
+            {/* email */}
             <FormField
-              type={'tel'}
-              name={'phone'}
-              value={values.phone}
-              placeholderText={'Phone Number'}
+              type={'email'}
+              name={'email'}
+              value={values.email}
+              placeholderText={'Email'}
               handleChange={handleChange}
             />
-          )}
-          {/* email */}
-          <FormField
-            type={'email'}
-            name={'email'}
-            value={values.email}
-            placeholderText={'Email'}
-            handleChange={handleChange}
-          />
+          </div>
           {/* password */}
           <FormField
             type={'password'}
@@ -103,9 +99,17 @@ const Register = () => {
             placeholderText={'Password'}
             handleChange={handleChange}
           />
+          {/* confirm password */}
+          <FormField
+            type={'password'}
+            name={'password'}
+            value={values.password}
+            placeholderText={'Confirm Password'}
+            handleChange={handleChange}
+          />
           {/* submit button */}
-          <div className="d-grid">
-            <button className="btn btn-primary" type="submit">
+          <div className="d-flex justify-content-center mt-3">
+            <button className="btn btn-primary " type="submit">
               {!values.isMember ? 'Register' : 'Login'}
             </button>
           </div>
@@ -116,7 +120,7 @@ const Register = () => {
             <button
               type="button"
               onClick={toggleMember}
-              className=" btn btn-primary ms-2"
+              className=" btn btn-link "
             >
               {values.isMember ? 'Signup' : 'Sign In'}
             </button>
