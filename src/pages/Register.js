@@ -1,5 +1,5 @@
 import '../styles/style.css'
-import FormRow from '../components/FormRow'
+import FormField from '../components/FormField'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -32,33 +32,44 @@ const Register = () => {
   }
 
   return (
-    <div className="login template d-flex justify-content-center align-items-center 100-w 100-vh">
-      <div className="form_container p-5 rounded bg-white">
+    <div
+      className="login template d-flex justify-content-center align-items-center 100-w"
+      style={{ minHeight: '100vh' }}
+    >
+      <div className="form_container p-5 rounded bg-white border border-black">
         <form onSubmit={handleSubmit}>
           <h3>{values.isMember ? 'SIGN IN' : 'SIGN UP'}</h3>
-          {/* firstname */}
-          {!values.isMember && (
-            <FormRow
-              type={'text'}
-              name={'firstName'}
-              value={values.firstName}
-              placeholderText={'First Name'}
-              handleChange={handleChange}
-            />
-          )}
-          {/* lastname */}
-          {!values.isMember && (
-            <FormRow
-              type={'text'}
-              name={'lastName'}
-              value={values.text}
-              placeholderText={'Last Name'}
-              handleChange={handleChange}
-            />
-          )}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+            }}
+          >
+            {/* firstname */}
+            {!values.isMember && (
+              <FormField
+                type={'text'}
+                name={'firstName'}
+                value={values.firstName}
+                placeholderText={'First Name'}
+                handleChange={handleChange}
+              />
+            )}
+            {/* lastname */}
+            {!values.isMember && (
+              <FormField
+                type={'text'}
+                name={'lastName'}
+                value={values.text}
+                placeholderText={'Last Name'}
+                handleChange={handleChange}
+              />
+            )}
+          </div>
           {/* address */}
           {!values.isMember && (
-            <FormRow
+            <FormField
               type={'text'}
               name={'address'}
               value={values.address}
@@ -68,7 +79,7 @@ const Register = () => {
           )}
           {/* phone no */}
           {!values.isMember && (
-            <FormRow
+            <FormField
               type={'tel'}
               name={'phone'}
               value={values.phone}
@@ -77,7 +88,7 @@ const Register = () => {
             />
           )}
           {/* email */}
-          <FormRow
+          <FormField
             type={'email'}
             name={'email'}
             value={values.email}
@@ -85,7 +96,7 @@ const Register = () => {
             handleChange={handleChange}
           />
           {/* password */}
-          <FormRow
+          <FormField
             type={'password'}
             name={'password'}
             value={values.password}

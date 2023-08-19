@@ -1,4 +1,4 @@
-const FormRow = ({ type, name, value, placeholderText, handleChange }) => {
+const FormField = ({ type, name, value, placeholderText, handleChange }) => {
   return (
     <div className="mb-2">
       <label htmlFor={name}></label>
@@ -7,11 +7,11 @@ const FormRow = ({ type, name, value, placeholderText, handleChange }) => {
         value={value}
         name={name}
         placeholder={placeholderText}
-        className="form-control"
         onChange={handleChange}
+        className="form-control"
       />
     </div>
   )
 }
 
-export default FormRow
+export default FormField
