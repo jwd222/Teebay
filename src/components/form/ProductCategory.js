@@ -1,15 +1,21 @@
 import categories from '../../data/categories'
 import { FormWrapper } from '../../styles/FormWrapper'
 
-const ProductCategory = () => {
+const ProductCategory = ({ category, updateFields }) => {
   return (
-    <FormWrapper title={'Select categories'}>
+    <FormWrapper label={'Select categories'}>
       <div>
         <select>
-          {categories.map((category, index) => {
+          {categories.map((item, index) => {
             return (
-              <option key={index} value={category}>
-                {category}
+              <option
+                key={index}
+                value={category}
+                onChange={(e) => {
+                  updateFields({ category: e.target.value })
+                }}
+              >
+                {item}
               </option>
             )
           })}

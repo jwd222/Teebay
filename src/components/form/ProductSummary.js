@@ -1,9 +1,21 @@
 import { FormWrapper } from '../../styles/FormWrapper'
 
-const ProductSummary = () => {
+const ProductSummary = ({
+  title,
+  category,
+  description,
+  buyPrice,
+  rentPrice,
+}) => {
   return (
-    <FormWrapper title={'Summary'}>
-      <div>ProductSummary</div>
+    <FormWrapper label={'Summary'}>
+      <div>
+        <p>Title: {title}</p>
+        <p>Categories: {category}</p>
+        <p>Description: {description}</p>
+        <p>Price: ${buyPrice}</p>
+        <p>To rent: ${rentPrice} per day</p>
+      </div>
     </FormWrapper>
   )
 }

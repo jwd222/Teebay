@@ -1,9 +1,18 @@
 import { FormWrapper } from '../../styles/FormWrapper'
-const ProductTitle = () => {
+const ProductTitle = ({ title, updateFields }) => {
   return (
-    <FormWrapper title={'Select a title for your product'}>
+    <FormWrapper label={'Select a title for your product'}>
       <div>
-        <input autoFocus required type="text" placeholder="Product Title" />
+        <input
+          autoFocus
+          required
+          type="text"
+          placeholder="Product Title"
+          value={title}
+          onChange={(e) => {
+            updateFields({ title: e.target.value })
+          }}
+        />
       </div>
     </FormWrapper>
   )

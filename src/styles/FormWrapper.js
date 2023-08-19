@@ -1,8 +1,8 @@
-export function FormWrapper({ title, children }) {
+export function FormWrapper({ label, children }) {
   return (
     <>
       <h2 style={{ textAlign: 'center', margin: 0, marginBottom: '2rem' }}>
-        {title}
+        {label}
       </h2>
       <div
         style={{
