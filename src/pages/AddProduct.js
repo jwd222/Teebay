@@ -6,19 +6,40 @@ import {
   ProductPrice,
   ProductSummary,
 } from '../components/form'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import productList from '../data/productList.js'
+
+const initialData = {
+  title: '',
+  category: '',
+  description: '',
+  buyPrice: '',
+  rentPrice: '',
+}
 
 const AddProduct = () => {
-  const { steps, currentStepIndex, step, isFirstStep, back, next, isLastStep } =
-    useMultiStepForm([
-      <ProductTitle />,
-      <ProductCategory />,
-      <ProductDescription />,
-      <ProductPrice />,
-      <ProductSummary />,
-    ])
+  const [data, setData] = useState(initialData)
+  const navigate = useNavigate()
+
+  function updateFields(fields) {
+    setData((prev) => {
+      return { ...prev, ...fields }
+    })
+  }
+  const { step, isFirstStep, back, next, isLastStep } = useMultiStepForm([
+    <ProductTitle {...data} updateFields={updateFields} />,
+    <ProductCategory {...data} updateFields={updateFields} />,
+    <ProductDescription {...data} updateFields={updateFields} />,
+    <ProductPrice {...data} updateFields={updateFields} />,
+    <ProductSummary {...data} updateFields={updateFields} />,
+  ])
   const onSubmit = (e) => {
     e.preventDefault()
-    next()
+    if (!isLastStep) return next()
+    console.log(data)
+    productList.push(data)
+    navigate('/dashboard')
   }
   return (
     <div
