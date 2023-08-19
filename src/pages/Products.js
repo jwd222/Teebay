@@ -10,11 +10,12 @@ const Products = () => {
       </div>
       <div className="d-flex flex-column align-items-center h-100 justify-content-center">
         <h3>All products</h3>
-        {productList.map((product) => {
+        {productList.map((product, index) => {
           return (
             <Product
+              key={index}
               title={product.title}
-              price={product.price}
+              price={product.buyPrice}
               description={product.description}
               date={product.date}
             />

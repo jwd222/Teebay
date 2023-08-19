@@ -1,15 +1,17 @@
-const productList = [
+let productList = [
   {
+    id: '1',
     title: 'Football boot',
     // categories: [],
-    price: '$500',
+    buyPrice: '$500',
     description: 'Football boot for sale',
     date: '11.11.11',
   },
   {
+    id: '2',
     title: 'Football',
     // categories: [],
-    price: '$400',
+    buyPrice: '$400',
     description: 'Football for sale',
     date: '13.12.11',
   },
