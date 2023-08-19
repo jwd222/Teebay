@@ -71,7 +71,7 @@ const Register = () => {
               handleChange={handleChange}
             />
           )}
-          <div className="d-flex justify-content-between">
+          <div className={!values.isMember ? 'd-flex' : ''}>
             {/* phone no */}
             {!values.isMember && (
               <FormField
@@ -100,13 +100,15 @@ const Register = () => {
             handleChange={handleChange}
           />
           {/* confirm password */}
-          <FormField
-            type={'password'}
-            name={'password'}
-            value={values.password}
-            placeholderText={'Confirm Password'}
-            handleChange={handleChange}
-          />
+          {!values.isMember && (
+            <FormField
+              type={'password'}
+              name={'password'}
+              value={values.password}
+              placeholderText={'Confirm Password'}
+              handleChange={handleChange}
+            />
+          )}
           {/* submit button */}
           <div className="d-flex justify-content-center mt-3">
             <button className="btn btn-primary " type="submit">

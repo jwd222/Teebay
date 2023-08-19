@@ -1,5 +1,6 @@
 import productList from '../data/productList'
 import { Product } from '../components'
+import { Link } from 'react-router-dom'
 
 const Products = () => {
   return (
@@ -20,7 +21,9 @@ const Products = () => {
           )
         })}
         <div className="d-flex m-4 flex-row-reverse">
-          <button className="btn btn-primary">Add Product</button>
+          <Link to="/add-product" className="btn btn-primary">
+            Add Product
+          </Link>
         </div>
       </div>
     </>
