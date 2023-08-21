@@ -37,9 +37,17 @@ const Register = () => {
 
   useEffect(() => {
     // console.log(getUserQueryData.data)
-    console.log(createUserQueryData.data)
-
-    console.log(getUserLoginQueryData.data)
+    // console.log(createUserQueryData.data)
+    // console.log(getUserLoginQueryData.data)
+    if (getUserLoginQueryData.data) {
+      const { getUserId } = getUserLoginQueryData.data
+      localStorage.setItem('userId', getUserId)
+      setTimeout(() => {
+        navigate('/edit-product')
+      }, 1000)
+      console.log(getUserId)
+    } else {
+    }
   }, [
     // getUserQueryData.data,
     createUserQueryData.data,
@@ -57,8 +65,8 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('clicked')
-    console.log(values)
+    // console.log('clicked')
+    // console.log(values)
     const { firstName, lastName, address, phone, email, password } = values
     // for register
     if (values.isMember) {
@@ -86,7 +94,6 @@ const Register = () => {
         setValues({ ...values, isMember: !values.isMember })
       }, 1000)
     }
-    // navigate('/edit-product')
   }
 
   return (
