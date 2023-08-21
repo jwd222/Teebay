@@ -5,6 +5,7 @@ const ProductPrice = ({ buyPrice, rentPrice, updateFields }) => {
     <FormWrapper label={'Select Price'}>
       <div>
         <input
+          className="product-form-input"
           autoFocus
           required
           type="number"
@@ -26,7 +27,7 @@ const ProductPrice = ({ buyPrice, rentPrice, updateFields }) => {
               updateFields({ rentPrice: e.target.value })
             }}
           />
-          <select name="rent" type="number" />
+          <select name="rent" type="number"/>
         </div>
       </div>
     </FormWrapper>
