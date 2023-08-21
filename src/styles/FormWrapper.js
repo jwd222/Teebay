@@ -6,10 +6,10 @@ export function FormWrapper({ label, children }) {
       </h2>
       <div
         style={{
-          display: 'grid',
+          display: 'flex',
           gap: '1rem .5rem',
           justifyContent: 'flex-start',
-          gridTemplateColumns: 'auto minmax(auto, 400px)',
+          width: '100%',
         }}
       >
         {children}
