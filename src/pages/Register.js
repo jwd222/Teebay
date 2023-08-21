@@ -1,7 +1,13 @@
 import '../styles/style.css'
 import FormField from '../components/FormField'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
+import {
+  CreateUserQuery,
+  GetUserIdQuery,
+  GetUserQuery,
+} from '../queries/RegisterLoginQueries'
 
 const initialState = {
   firstName: '',
@@ -14,8 +20,31 @@ const initialState = {
 }
 
 const Register = () => {
-  const navigate = useNavigate()
   const [values, setValues] = useState(initialState)
+  const navigate = useNavigate()
+
+  // queries
+  // const getUserQueryData = useQuery(GetUserQuery, {
+  //   variables: {
+  //     getUserId: '28b70f8e-dc26-4621-bc96-25181268c291',
+  //   },
+  // })
+
+  const [getUserId, getUserLoginQueryData] = useLazyQuery(GetUserIdQuery)
+
+  // mutation
+  const [createUser, createUserQueryData] = useMutation(CreateUserQuery)
+
+  useEffect(() => {
+    // console.log(getUserQueryData.data)
+    console.log(createUserQueryData.data)
+
+    console.log(getUserLoginQueryData.data)
+  }, [
+    // getUserQueryData.data,
+    createUserQueryData.data,
+    getUserLoginQueryData.data,
+  ])
 
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember })
@@ -23,12 +52,41 @@ const Register = () => {
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value })
+    // console.log(values)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log('clicked')
     console.log(values)
-    navigate('/dashboard')
+    const { firstName, lastName, address, phone, email, password } = values
+    // for register
+    if (values.isMember) {
+      // for login
+      getUserId({
+        variables: {
+          email: values.email,
+          password: values.password,
+        },
+      })
+      // navigate('/edit-product')
+    } else {
+      createUser({
+        variables: {
+          firstName: firstName,
+          email: email,
+          password: password,
+          address: address,
+          phoneNumber: phone,
+        },
+      })
+    }
+    if (!values.isMember) {
+      setTimeout(() => {
+        setValues({ ...values, isMember: !values.isMember })
+      }, 1000)
+    }
+    // navigate('/edit-product')
   }
 
   return (
