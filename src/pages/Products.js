@@ -1,8 +1,11 @@
 import productList from '../data/productList'
-import { Product } from '../components'
+import { Modal, Product } from '../components'
 import { Link } from 'react-router-dom'
 
 const Products = () => {
+
+
+  
   return (
     <>
       <div className="d-flex flex-row-reverse m-4">
@@ -12,13 +15,16 @@ const Products = () => {
         <h3>All products</h3>
         {productList.map((product, index) => {
           return (
-            <Product
-              key={index}
-              title={product.title}
-              price={product.buyPrice}
-              description={product.description}
-              date={product.date}
-            />
+            <>
+              <Modal />
+              <Product
+                key={index}
+                title={product.title}
+                price={product.buyPrice}
+                description={product.description}
+                date={product.date}
+              />
+            </>
           )
         })}
         <div className="d-flex m-4 flex-row-reverse">
