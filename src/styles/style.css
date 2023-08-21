@@ -3,12 +3,20 @@ body,
   height: 100vh;
 }
 
+.product-form-input {
+  width: 100%;
+}
+
 .product-card {
   width: 18rem;
 }
 
 .form_container {
   width: 25%;
+}
+
+.product-form {
+  width: 40%;
 }
 
 @media screen and (max-width: 1000px) {
