@@ -2,14 +2,15 @@
 import { Product } from '../components'
 import { Link } from 'react-router-dom'
 
-import { GET_PRODUCT_FROM_USERID } from '../queries/RegisterLoginQueries'
+import { GET_PRODUCT_FROM_USERID } from '../queries/GraphqlQueries'
 import { useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Products = () => {
-  const navigate = useNavigate()
   const userId = localStorage.getItem('userId')
+
+  const navigate = useNavigate()
   const getProductFromUserIdData = useQuery(GET_PRODUCT_FROM_USERID, {
     variables: {
       ownerId: userId,
@@ -33,10 +34,22 @@ const Products = () => {
     localStorage.removeItem('userId')
     navigate('/')
   }
+  const allProducts = () => {
+    // localStorage.removeItem('userId')
+    navigate('/all-products')
+  }
 
   return (
     <>
-      <div className="d-flex flex-row-reverse m-4">
+      <div className="d-flex justify-content-between m-4">
+        <button
+          className="btn btn-secondary"
+          onClick={() => {
+            allProducts()
+          }}
+        >
+          All Products
+        </button>
         <button
           className="btn btn-danger"
           onClick={() => {
@@ -47,18 +60,18 @@ const Products = () => {
         </button>
       </div>
       <div className="d-flex flex-column align-items-center h-100 justify-content-center">
-        <h3>All products</h3>
-        {products.map((product, index) => {
+        <h3>My products</h3>
+        {products.map((product) => {
           // console.log(product)
           return (
             <Product
-              key={index}
+              key={product.title}
               title={product.title}
               buyPrice={product.buyPrice}
               rentPrice={product.rentPrice}
               description={product.description}
               category={product.category}
-              // date={product.date}
+              createdAt={product.createdAt}
             />
           )
         })}
