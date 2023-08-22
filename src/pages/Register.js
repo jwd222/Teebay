@@ -1,12 +1,12 @@
 import '../styles/style.css'
 import FormField from '../components/FormField'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useQuery, useMutation, useLazyQuery } from '@apollo/client'
+import { useMutation, useLazyQuery } from '@apollo/client'
 import {
-  CreateUserQuery,
-  GetUserIdQuery,
-  GetUserQuery,
+  CREATE_USER,
+  GET_USERID,
+  // GET_USER,
 } from '../queries/RegisterLoginQueries'
 
 const initialState = {
@@ -30,29 +30,31 @@ const Register = () => {
   //   },
   // })
 
-  const [getUserId, getUserLoginQueryData] = useLazyQuery(GetUserIdQuery)
+  const [getUserId, getUserLoginQueryData] = useLazyQuery(GET_USERID)
 
   // mutation
-  const [createUser, createUserQueryData] = useMutation(CreateUserQuery)
+  const [createUser, createUserQueryData] = useMutation(CREATE_USER)
 
-  useEffect(() => {
-    // console.log(getUserQueryData.data)
-    // console.log(createUserQueryData.data)
-    // console.log(getUserLoginQueryData.data)
-    if (getUserLoginQueryData.data) {
-      const { getUserId } = getUserLoginQueryData.data
-      localStorage.setItem('userId', getUserId)
-      setTimeout(() => {
-        navigate('/edit-product')
-      }, 1000)
-      console.log(getUserId)
-    } else {
-    }
-  }, [
-    // getUserQueryData.data,
-    createUserQueryData.data,
-    getUserLoginQueryData.data,
-  ])
+  // useEffect(() => {
+  //   // console.log(getUserQueryData.data)
+  //   // console.log(createUserQueryData.data)
+  //   console.log(getUserLoginQueryData.data)
+
+  // }, [
+  //   // getUserQueryData.data,
+  //   createUserQueryData.data,
+  //   getUserLoginQueryData.data,
+  //   navigate,
+  // ])
+
+  if (getUserLoginQueryData.data) {
+    const { getUserId } = getUserLoginQueryData.data
+    localStorage.setItem('userId', getUserId)
+    setTimeout(() => {
+      navigate('/dashboard')
+    }, 1000)
+    console.log(getUserId)
+  }
 
   const toggleMember = () => {
     setValues({ ...values, isMember: !values.isMember })
