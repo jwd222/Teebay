@@ -8,7 +8,7 @@ const ProductCategory = ({ category, updateFields }) => {
         className="w-100"
         value={category}
         onChange={(e) => {
-          // console.log(category)
+          console.log(category)
           updateFields({ category: e.target.value })
         }}
       >

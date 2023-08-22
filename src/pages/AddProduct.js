@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 // import productList from '../data/productList.js'
 
 import { useMutation } from '@apollo/client'
-import { CREATE_PRODUCT } from '../queries/RegisterLoginQueries.js'
+import { CREATE_PRODUCT } from '../queries/GraphqlQueries.js'
 
 const initialData = {
   title: '',
@@ -33,6 +33,7 @@ const AddProduct = () => {
       return { ...prev, ...fields }
     })
   }
+
   const { step, isFirstStep, back, next, isLastStep } = useMultiStepForm([
     <ProductTitle {...data} updateFields={updateFields} />,
     <ProductCategory {...data} updateFields={updateFields} />,

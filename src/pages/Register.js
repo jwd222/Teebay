@@ -7,7 +7,7 @@ import {
   CREATE_USER,
   GET_USERID,
   // GET_USER,
-} from '../queries/RegisterLoginQueries'
+} from '../queries/GraphqlQueries'
 
 const initialState = {
   firstName: '',
