@@ -3,7 +3,7 @@ import { Product } from '../components'
 import { Link } from 'react-router-dom'
 
 import { GET_PRODUCT_FROM_USERID } from '../queries/RegisterLoginQueries'
-import { useLazyQuery, useQuery } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
