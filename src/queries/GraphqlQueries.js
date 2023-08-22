@@ -20,14 +20,17 @@ export const GET_USERID = gql`
 export const GET_PRODUCT_FROM_USERID = gql`
   query ExampleQuery($ownerId: ID) {
     getProductsFromId(ownerId: $ownerId) {
+      id
       title
       category
       description
       buyPrice
       rentPrice
+      createdAt
     }
   }
 `
+// export const GET_ALL_PRODUCTS = gq;
 
 // mutations
 export const CREATE_USER = gql`
