@@ -8,20 +8,25 @@ import {
 } from '../components/form'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import productList from '../data/productList.js'
+// import productList from '../data/productList.js'
+
+import { useMutation } from '@apollo/client'
+import { CREATE_PRODUCT } from '../queries/RegisterLoginQueries.js'
 
 const initialData = {
   title: '',
   category: '',
   description: '',
-  buyPrice: '',
-  rentPrice: '',
+  buyPrice: 0.0,
+  rentPrice: 0.0,
   date: Date(),
 }
 
 const AddProduct = () => {
   const [data, setData] = useState(initialData)
   const navigate = useNavigate()
+
+  const [createProduct] = useMutation(CREATE_PRODUCT)
 
   function updateFields(fields) {
     setData((prev) => {
@@ -36,10 +41,22 @@ const AddProduct = () => {
     <ProductSummary {...data} updateFields={updateFields} />,
   ])
   const onSubmit = (e) => {
-    e.preventDefault()
-    if (!isLastStep) return next()
-    console.log(data)
-    productList.push(data)
+    if (!isLastStep) {
+      e.preventDefault()
+      return next()
+    }
+
+    // console.log(data)
+    createProduct({
+      variables: {
+        title: data.title,
+        category: data.category,
+        description: data.description,
+        buyPrice: parseFloat(data.buyPrice),
+        rentPrice: parseFloat(data.rentPrice),
+        ownerId: localStorage.getItem('userId'),
+      },
+    })
     navigate('/dashboard')
   }
   return (

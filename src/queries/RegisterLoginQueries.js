@@ -47,3 +47,23 @@ export const CREATE_USER = gql`
     )
   }
 `
+
+export const CREATE_PRODUCT = gql`
+  mutation Mutation(
+    $title: String!
+    $category: String!
+    $description: String!
+    $buyPrice: Float!
+    $rentPrice: Float!
+    $ownerId: ID!
+  ) {
+    createProduct(
+      title: $title
+      category: $category
+      description: $description
+      buyPrice: $buyPrice
+      rentPrice: $rentPrice
+      ownerId: $ownerId
+    )
+  }
+`

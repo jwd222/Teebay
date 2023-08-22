@@ -9,6 +9,7 @@ const ProductPrice = ({ buyPrice, rentPrice, updateFields }) => {
           autoFocus
           required
           type="number"
+          step="0.01"
           placeholder="Purchase Price"
           value={buyPrice}
           onChange={(e) => {
@@ -21,13 +22,13 @@ const ProductPrice = ({ buyPrice, rentPrice, updateFields }) => {
           <input
             required
             type="number"
-            placeholder="$50"
+            step="0.01"
             value={rentPrice}
             onChange={(e) => {
               updateFields({ rentPrice: e.target.value })
             }}
           />
-          <select name="rent" type="number"/>
+          {/* <select name="rent" type="number" /> */}
         </div>
       </div>
     </FormWrapper>
