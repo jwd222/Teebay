@@ -62,7 +62,7 @@ const Products = () => {
             allProducts()
           }}
         >
-          All Products
+          {!myPage ? 'My products' : 'All Products'}
         </button>
         <button
           className="btn btn-danger"
