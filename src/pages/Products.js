@@ -76,21 +76,8 @@ const Products = () => {
       <div className="d-flex flex-column align-items-center">
         <h3>{myPage ? 'My products' : 'All Products'}</h3>
         {products.map((product) => {
-          console.log(product)
-          return (
-            <Product
-              key={product.id}
-              title={product.title}
-              buyPrice={product.buyPrice}
-              rentPrice={product.rentPrice}
-              rentTime={product.rentTime}
-              description={product.description}
-              category={product.category}
-              createdAt={product.createdAt}
-              id={product.id}
-              myPage={myPage}
-            />
-          )
+          // console.log(product)
+          return <Product key={product.id} {...product} myPage={myPage} />
         })}
         <div className="d-flex m-4 flex-row-reverse">
           {myPage && (
