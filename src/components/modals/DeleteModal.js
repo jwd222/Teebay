@@ -1,8 +1,10 @@
 import { useMutation } from '@apollo/client'
 import { DELETE_PRODUCT } from '../../queries/GraphqlQueries'
+import { useState } from 'react'
 
 const DeleteModal = ({ id }) => {
   const [deleteProduct] = useMutation(DELETE_PRODUCT)
+  const [productId, setProductId] = useState(null)
   // console.log(id)
   return (
     <>
@@ -13,6 +15,9 @@ const DeleteModal = ({ id }) => {
         data-bs-target="#deleteModal"
         onClick={() => {
           console.log('click')
+          console.log(id)
+          setProductId(id)
+          console.log(productId)
         }}
       >
         Delete
@@ -42,13 +47,13 @@ const DeleteModal = ({ id }) => {
                 type="button"
                 className="btn btn-primary"
                 onClick={() => {
-                  deleteProduct({
-                    variables: {
-                      deleteProductId: id,
-                    },
-                  })
+                  // deleteProduct({
+                  //   variables: {
+                  //     deleteProductId: id,
+                  //   },
+                  // })
                   console.log('product deleted')
-                  // console.log(id)
+                  console.log(id)
                 }}
                 data-bs-dismiss="modal"
               >
