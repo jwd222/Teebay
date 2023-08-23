@@ -1,4 +1,4 @@
-import { DeleteModal, EditModal } from '../components'
+import { DeleteModal } from '../components'
 import Card from './Card'
 
 const Product = ({ ...data }) => {

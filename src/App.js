@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Register, Products, AddProduct, EditProduct } from './pages'
+import { Register, Products, AddProduct } from './pages'
 // import 'bootstrap/dist/css/bootstrap.min.css'
 
 function App() {

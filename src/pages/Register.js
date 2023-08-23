@@ -33,7 +33,7 @@ const Register = () => {
   const [getUserId, getUserLoginQueryData] = useLazyQuery(GET_USERID)
 
   // mutation
-  const [createUser, createUserQueryData] = useMutation(CREATE_USER)
+  const [createUser] = useMutation(CREATE_USER)
 
   // useEffect(() => {
   //   // console.log(getUserQueryData.data)
@@ -53,7 +53,7 @@ const Register = () => {
     setTimeout(() => {
       navigate('/dashboard')
     }, 1000)
-    console.log(getUserId)
+    // console.log(getUserId)
   }
 
   const toggleMember = () => {
@@ -84,6 +84,7 @@ const Register = () => {
       createUser({
         variables: {
           firstName: firstName,
+          lastName: lastName,
           email: email,
           password: password,
           address: address,
