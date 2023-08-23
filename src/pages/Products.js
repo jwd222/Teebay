@@ -2,7 +2,10 @@
 import { Product } from '../components'
 import { Link } from 'react-router-dom'
 
-import { GET_PRODUCT_FROM_USERID } from '../queries/GraphqlQueries'
+import {
+  GET_ALL_PRODUCTS,
+  GET_PRODUCT_FROM_USERID,
+} from '../queries/GraphqlQueries'
 import { useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -16,18 +19,29 @@ const Products = () => {
       ownerId: userId,
     },
   })
+
+  const getAllProductsData = useQuery(GET_ALL_PRODUCTS)
+
   let [products, setProducts] = useState([])
+  let [myPage, setMyPage] = useState(true)
 
   useEffect(() => {
-    if (getProductFromUserIdData.data) {
-      // console.log(getProductFromUserIdData.data)
-      const { getProductsFromId } = getProductFromUserIdData?.data
-      setProducts([...getProductsFromId])
-      console.log(getProductsFromId)
-      // localStorage.setItem('products', JSON.stringify(newProductList))
+    if (myPage) {
+      if (getProductFromUserIdData.data) {
+        // console.log(getProductFromUserIdData.data)
+        const { getProductsFromId } = getProductFromUserIdData?.data
+        setProducts([...getProductsFromId])
+        // console.log(getProductsFromId)
+      }
+    } else {
+      if (getAllProductsData.data) {
+        // console.log(getAllProductsData.data)
+        const { getAllProducts } = getAllProductsData?.data
+        setProducts([...getAllProducts])
+        // console.log(getAllProducts)
+      }
     }
-  }, [getProductFromUserIdData.data])
-  // const newProductList = JSON.parse(localStorage.getItem('products'))
+  }, [getProductFromUserIdData.data, getAllProductsData.data, myPage])
   // console.log(newProductList)
 
   const logOut = () => {
@@ -35,8 +49,8 @@ const Products = () => {
     navigate('/')
   }
   const allProducts = () => {
-    // localStorage.removeItem('userId')
-    navigate('/all-products')
+    setMyPage(!myPage)
+    // navigate('/dashboard')
   }
 
   return (
@@ -59,8 +73,8 @@ const Products = () => {
           Logout
         </button>
       </div>
-      <div className="d-flex flex-column align-items-center h-100 justify-content-center">
-        <h3>My products</h3>
+      <div className="d-flex flex-column align-items-center">
+        <h3>{myPage ? 'My products' : 'All Products'}</h3>
         {products.map((product) => {
           // console.log(product)
           return (
@@ -72,13 +86,16 @@ const Products = () => {
               description={product.description}
               category={product.category}
               createdAt={product.createdAt}
+              myPage={myPage}
             />
           )
         })}
         <div className="d-flex m-4 flex-row-reverse">
-          <Link to="/add-product" className="btn btn-primary">
-            Add Product
-          </Link>
+          {myPage && (
+            <Link to="/add-product" className="btn btn-primary">
+              Add Product
+            </Link>
+          )}
         </div>
       </div>
     </>

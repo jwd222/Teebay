@@ -30,7 +30,19 @@ export const GET_PRODUCT_FROM_USERID = gql`
     }
   }
 `
-// export const GET_ALL_PRODUCTS = gq;
+export const GET_ALL_PRODUCTS = gql`
+  query GetAllProducts {
+    getAllProducts {
+      id
+      title
+      category
+      description
+      buyPrice
+      rentPrice
+      createdAt
+    }
+  }
+`
 
 // mutations
 export const CREATE_USER = gql`
