@@ -2,7 +2,6 @@
 import { ViewModal, EditModal } from '../components'
 
 const Card = ({
-  key,
   title,
   category,
   description,
@@ -10,6 +9,8 @@ const Card = ({
   rentPrice,
   createdAt,
   myPage,
+  isForm,
+  rentTime,
 }) => {
   // console.log(typeof Number(createdAt))
   // let date = new Date(Number(createdAt)).toLocaleString()
@@ -18,7 +19,13 @@ const Card = ({
     <div className="product-card card d-flex justify-content-center align-content-center my-2">
       <div className="card-body">
         <div className="d-flex justify-content-between">
-          {!myPage ? <ViewModal title={title} /> : <EditModal title={title} />}
+          {isForm ? (
+            <p className="card-title">Title: {title}</p>
+          ) : !myPage ? (
+            <ViewModal title={title} />
+          ) : (
+            <EditModal title={title} />
+          )}
           {/* <Link
             to={myPage ? '/edit-product' : '/view-product'}
             className="card-title"
@@ -31,10 +38,15 @@ const Card = ({
           <p className="card-text">Category: {category}</p>
           <p className="card-text">Description: {description}</p>
           <p className="card-text">Price: ${buyPrice}</p>
-          <p className="card-text">Rent: ${rentPrice}</p>
-          <p className="card-text">
-            Date posted: {new Date(Number(createdAt)).toLocaleDateString()}
-          </p>
+          <div className="d-flex">
+            <p className="card-text">Rent: ${rentPrice}</p>
+            <p className="card-text">{rentTime}</p>
+          </div>
+          {!isForm && (
+            <p className="card-text">
+              Date posted: {new Date(Number(createdAt)).toLocaleDateString()}
+            </p>
+          )}
           {/* <Link to="/edit-product" /> */}
         </div>
       </div>
