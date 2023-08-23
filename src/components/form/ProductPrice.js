@@ -1,6 +1,7 @@
+import { rentTimes } from '../../data/categories'
 import { FormWrapper } from '../../styles/FormWrapper'
 
-const ProductPrice = ({ buyPrice, rentPrice, updateFields }) => {
+const ProductPrice = ({ buyPrice, rentPrice, rentTime, updateFields }) => {
   return (
     <FormWrapper label={'Select Price'}>
       <div>
@@ -28,7 +29,20 @@ const ProductPrice = ({ buyPrice, rentPrice, updateFields }) => {
               updateFields({ rentPrice: e.target.value })
             }}
           />
-          {/* <select name="rent" type="number" /> */}
+          <select
+            className="w-100"
+            value={rentTime}
+            onChange={(e) => {
+              console.log(rentTime)
+              updateFields({ rentTime: e.target.value })
+            }}
+          >
+            {rentTimes.map((item, index) => (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
     </FormWrapper>

@@ -26,6 +26,7 @@ export const GET_PRODUCT_FROM_USERID = gql`
       description
       buyPrice
       rentPrice
+      rentTime
       createdAt
     }
   }
@@ -39,6 +40,7 @@ export const GET_ALL_PRODUCTS = gql`
       description
       buyPrice
       rentPrice
+      rentTime
       createdAt
     }
   }
@@ -72,6 +74,7 @@ export const CREATE_PRODUCT = gql`
     $description: String!
     $buyPrice: Float!
     $rentPrice: Float!
+    $rentTime: String!
     $ownerId: ID!
   ) {
     createProduct(
@@ -80,6 +83,7 @@ export const CREATE_PRODUCT = gql`
       description: $description
       buyPrice: $buyPrice
       rentPrice: $rentPrice
+      rentTime: $rentTime
       ownerId: $ownerId
     )
   }

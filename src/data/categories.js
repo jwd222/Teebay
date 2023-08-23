@@ -1,4 +1,5 @@
 const categories = [
+  '',
   'ELECTRONICS',
   'FURNITURE',
   'HOME APPLIANCES',
@@ -7,4 +8,6 @@ const categories = [
   'TOYS',
 ]
 
-export default categories
+const rentTimes = ['per hour', 'per day']
+
+export { categories, rentTimes }

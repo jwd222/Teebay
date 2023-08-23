@@ -19,7 +19,8 @@ const initialData = {
   description: '',
   buyPrice: 0.0,
   rentPrice: 0.0,
-  date: Date(),
+  rentTime: '',
+  isForm: true,
 }
 
 const AddProduct = () => {
@@ -55,6 +56,7 @@ const AddProduct = () => {
         description: data.description,
         buyPrice: parseFloat(data.buyPrice),
         rentPrice: parseFloat(data.rentPrice),
+        rentTime: data.rentTime,
         ownerId: localStorage.getItem('userId'),
       },
     })
