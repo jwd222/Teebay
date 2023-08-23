@@ -13,6 +13,7 @@ const FormField = ({
         type={type}
         value={value}
         name={name}
+        required
         placeholder={placeholderText}
         onChange={handleChange}
         className="form-control"
