@@ -48,6 +48,7 @@ export const GET_ALL_PRODUCTS = gql`
 export const CREATE_USER = gql`
   mutation CreateUser(
     $firstName: String!
+    $lastName: String
     $email: String!
     $password: String!
     $address: String!
@@ -55,6 +56,7 @@ export const CREATE_USER = gql`
   ) {
     createUser(
       firstName: $firstName
+      lastName: $lastName
       email: $email
       password: $password
       address: $address
