@@ -42,6 +42,16 @@ export const GET_ALL_PRODUCTS = gql`
       rentPrice
       rentTime
       createdAt
+      ownerId
+    }
+  }
+`
+
+export const GET_TRANSACTION = gql`
+  query Query($productId: ID!) {
+    getTransactionFromProductId(productId: $productId) {
+      fromUserId
+      toUserId
     }
   }
 `
@@ -92,5 +102,21 @@ export const CREATE_PRODUCT = gql`
 export const DELETE_PRODUCT = gql`
   mutation Mutation($deleteProductId: ID!) {
     deleteProduct(id: $deleteProductId)
+  }
+`
+
+export const CREATE_TRANSACTION = gql`
+  mutation Mutation(
+    $productId: ID!
+    $fromUserId: ID!
+    $toUserId: ID!
+    $transactionStatus: String!
+  ) {
+    createTransaction(
+      productId: $productId
+      fromUserId: $fromUserId
+      toUserId: $toUserId
+      transactionStatus: $transactionStatus
+    )
   }
 `
