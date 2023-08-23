@@ -1,4 +1,4 @@
-import useMultiStepForm from '../hooks/useMultiStepForm.js'
+import useMultiStepForm from '../hooks/useMultiStepForm'
 import {
   ProductTitle,
   ProductCategory,
