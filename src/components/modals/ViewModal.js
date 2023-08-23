@@ -1,4 +1,6 @@
-const ViewModal = ({ title }) => {
+import ViewModalButton from './ViewModalButton'
+
+const ViewModal = ({ title, id, ownerId }) => {
   return (
     <>
       <button
@@ -7,7 +9,9 @@ const ViewModal = ({ title }) => {
         data-bs-toggle="modal"
         data-bs-target="#viewModal"
         onClick={() => {
-          console.log('click')
+          // console.log(id)
+          // console.log(ownerId)
+          // console.log(toUserId)
         }}
       >
         Title: {title}
@@ -22,40 +26,28 @@ const ViewModal = ({ title }) => {
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
-            {/* <div className="modal-header">
-              <h1 className="modal-title fs-5" id="exampleModalLabel">
-                Modal title
-              </h1>
-              <button
-                type="button"
-                className="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div> */}
             <div className="modal-body">Viewing Product</div>
             <div className="modal-footer">
-              <button
+              {/* <button
                 type="button"
                 className="btn btn-danger"
                 data-bs-dismiss="modal"
                 onClick={() => {
+                  createTransaction({
+                    variables: {
+                      productId: id,
+                      fromUserId: ownerId,
+                      toUserId: localStorage.getItem('userId'),
+                      transactionStatus: 'RENTING',
+                    },
+                  })
                   console.log('product rented')
                 }}
               >
                 Rent
-              </button>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => {
-                  console.log('product bought')
-                }}
-                // close for now later make onclick function work
-                data-bs-dismiss="modal"
-              >
-                Buy
-              </button>
+              </button> */}
+              <ViewModalButton id={id} ownerId={ownerId} isRent={true} />
+              <ViewModalButton id={id} ownerId={ownerId} isRent={false} />
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client'
-import { DELETE_PRODUCT } from '../queries/GraphqlQueries'
+import { DELETE_PRODUCT } from '../../queries/GraphqlQueries'
 
 const DeleteModal = ({ id }) => {
   const [deleteProduct] = useMutation(DELETE_PRODUCT)

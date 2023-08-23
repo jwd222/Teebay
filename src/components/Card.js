@@ -1,7 +1,8 @@
 // import { Link } from 'react-router-dom'
-import { ViewModal, EditModal } from '../components'
+import { ViewModal, EditModal } from '../components/modals'
 
 const Card = ({
+  id,
   title,
   category,
   description,
@@ -11,6 +12,7 @@ const Card = ({
   myPage,
   isForm,
   rentTime,
+  ownerId,
 }) => {
   // console.log(typeof Number(createdAt))
   // let date = new Date(Number(createdAt)).toLocaleString()
@@ -22,9 +24,9 @@ const Card = ({
           {isForm ? (
             <p className="card-title">Title: {title}</p>
           ) : !myPage ? (
-            <ViewModal title={title} />
+            <ViewModal title={title} id={id} ownerId={ownerId} />
           ) : (
-            <EditModal title={title} />
+            <EditModal title={title} id={id} />
           )}
           {/* <Link
             to={myPage ? '/edit-product' : '/view-product'}
