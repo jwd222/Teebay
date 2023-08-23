@@ -10,6 +10,7 @@ const ProductTitle = ({ title, updateFields }) => {
         placeholder="Product Title"
         value={title}
         onChange={(e) => {
+          // console.log(e.target.value)
           updateFields({ title: e.target.value })
         }}
       />

@@ -1,7 +1,14 @@
-const FormField = ({ type, name, value, placeholderText, handleChange }) => {
+const FormField = ({
+  type,
+  name,
+  value,
+  placeholderText,
+  handleChange,
+  labelText,
+}) => {
   return (
     <div className="mb-2">
-      <label htmlFor={name}></label>
+      <label htmlFor={name}>{labelText}</label>
       <input
         type={type}
         value={value}

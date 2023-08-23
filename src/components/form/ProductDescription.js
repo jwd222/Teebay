@@ -11,6 +11,7 @@ const ProductDescription = ({ description, updateFields }) => {
         placeholder="Product Description"
         value={description}
         onChange={(e) => {
+          // console.log(description)
           updateFields({ description: e.target.value })
         }}
       />
