@@ -2,7 +2,7 @@
 
 ## Requirements
 
-Node version: v18.16.0.
+Node version: 18.16.0.
 
 ## How to install frontend
 
