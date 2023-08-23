@@ -1,5 +1,7 @@
 # Teebay Frontend
 
+Written in Javascript using React
+
 ## Requirements
 
 Node version: 18.16.0.
