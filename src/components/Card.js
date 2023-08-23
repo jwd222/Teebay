@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import { DeleteModal, ViewModal, EditModal } from '../components'
+// import { Link } from 'react-router-dom'
+import { ViewModal, EditModal } from '../components'
 
 const Card = ({
   key,

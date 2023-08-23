@@ -79,13 +79,14 @@ const Products = () => {
           // console.log(product)
           return (
             <Product
-              key={product.title}
+              key={product.id}
               title={product.title}
               buyPrice={product.buyPrice}
               rentPrice={product.rentPrice}
               description={product.description}
               category={product.category}
               createdAt={product.createdAt}
+              id={product.id}
               myPage={myPage}
             />
           )

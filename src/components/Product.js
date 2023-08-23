@@ -2,11 +2,12 @@ import { DeleteModal, EditModal } from '../components'
 import Card from './Card'
 
 const Product = ({ ...data }) => {
-  const { myPage } = data
+  const { id, myPage } = data
+  // console.log(id)
   return (
     <div className="d-flex align-items-start">
       <Card {...data} />
-      {myPage && <DeleteModal />}
+      {myPage && <DeleteModal id={id} />}
     </div>
   )
 }
