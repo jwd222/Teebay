@@ -1,4 +1,4 @@
-import categories from '../../data/categories'
+import { categories } from '../../data/categories'
 import { FormWrapper } from '../../styles/FormWrapper'
 
 const ProductCategory = ({ category, updateFields }) => {
