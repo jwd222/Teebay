@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT_FROM_USERID,
+  GET_USER,
 } from '../queries/GraphqlQueries'
 import { useQuery } from '@apollo/client'
 import { useEffect, useState } from 'react'
@@ -21,9 +22,15 @@ const Products = () => {
   })
 
   const getAllProductsData = useQuery(GET_ALL_PRODUCTS)
+  const getUserData = useQuery(GET_USER, {
+    variables: {
+      getUserId: userId,
+    },
+  })
 
   let [products, setProducts] = useState([])
   let [myPage, setMyPage] = useState(true)
+  let [user, setUser] = useState(null)
 
   useEffect(() => {
     if (myPage) {
@@ -41,7 +48,18 @@ const Products = () => {
         // console.log(getAllProducts)
       }
     }
-  }, [getProductFromUserIdData.data, getAllProductsData.data, myPage])
+    if (getUserData.data) {
+      // console.log(getUserData.data)
+      const { getUser } = getUserData?.data
+      setUser(getUser.firstName)
+      // console.log(getUser.firstName)
+    }
+  }, [
+    getProductFromUserIdData.data,
+    getAllProductsData.data,
+    getUserData.data,
+    myPage,
+  ])
   // console.log(newProductList)
 
   const logOut = () => {
@@ -74,6 +92,7 @@ const Products = () => {
         </button>
       </div>
       <div className="d-flex flex-column align-items-center">
+        <h1>User: {user}</h1>
         <h3>{myPage ? 'My products' : 'All Products'}</h3>
         {products.map((product) => {
           // console.log(product)
