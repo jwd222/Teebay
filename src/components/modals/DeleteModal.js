@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 const DeleteModal = ({ id }) => {
   const [deleteProduct] = useMutation(DELETE_PRODUCT)
-  const [productId, setProductId] = useState(null)
+  const [productId, setProductId] = useState(id)
   // console.log(id)
   return (
     <>
@@ -15,9 +15,9 @@ const DeleteModal = ({ id }) => {
         data-bs-target="#deleteModal"
         onClick={() => {
           console.log('click')
-          console.log(id)
-          setProductId(id)
-          console.log(productId)
+          console.log(`normal id: ${id}`)
+          // setProductId(id)
+          console.log(`product id: ${productId}`)
         }}
       >
         Delete
@@ -33,7 +33,7 @@ const DeleteModal = ({ id }) => {
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
             <div className="modal-body">
-              Are you sure you want to delete this product?
+              Are you sure you want to delete this product? {id}
             </div>
             <div className="modal-footer">
               <button
@@ -46,14 +46,17 @@ const DeleteModal = ({ id }) => {
               <button
                 type="button"
                 className="btn btn-primary"
-                onClick={() => {
-                  // deleteProduct({
-                  //   variables: {
-                  //     deleteProductId: id,
-                  //   },
-                  // })
+                onClick={(e) => {
+                  e.preventDefault()
+                  console.log(`normal id: ${id}`)
+                  setProductId(id)
+                  deleteProduct({
+                    variables: {
+                      deleteProductId: id,
+                    },
+                  })
                   console.log('product deleted')
-                  console.log(id)
+                  console.log(`product id after set: ${productId}`)
                 }}
                 data-bs-dismiss="modal"
               >

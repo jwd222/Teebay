@@ -59,6 +59,7 @@ const Products = () => {
     getAllProductsData.data,
     getUserData.data,
     myPage,
+    // products,
   ])
   // console.log(newProductList)
 
